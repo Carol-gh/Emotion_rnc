@@ -4,7 +4,6 @@
 ## David Revelo Luna
 
 # Import de librerias
-
 from tensorflow.keras.applications.imagenet_utils import preprocess_input
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.models import load_model
@@ -21,7 +20,7 @@ y= [0.0,0.0,0.0,0.0,0.0,0.0,0.0]
 plt.ion() 
 figura1 = plt.figure()
 bar1 = plt.bar(x,y)
-my_colors = ['r', 'g', 'b', 'y', 'k', 'm', 'c']
+my_colors = 'rgbykmc'
 
 # Variables para calcular FPS
 time_actualframe = 0
@@ -74,7 +73,7 @@ def predict_emotion(frame,faceNet,emotionModel):
 			# Se extrae el rostro y se convierte BGR a GRAY
 			# Finalmente se escala a 224x244
 			face = frame[Yi:Yf, Xi:Xf]
-			#face = cv2.cvtColor(face, cv2.COLOR_BGR2GRAY)
+			face = cv2.cvtColor(face, cv2.COLOR_BGR2GRAY)
 			face = cv2.resize(face, (48, 48))
 			face2 = img_to_array(face)
 			face2 = np.expand_dims(face2,axis=0)
@@ -115,7 +114,7 @@ while True:
 		plt.xticks(x, ['angry','disgust','fear','happy','neutral','sad','surprise'])
 		plt.grid(True)
 		plt.ylim([0.0,1.0])
-		plt.bar(x, y, color=my_colors, width=1)
+		plt.bar(x,y,color=my_colors,width=1)
 		figura1.canvas.draw()
 
 	time_actualframe = time.time()
